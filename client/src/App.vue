@@ -166,43 +166,27 @@
             </button>
           </div>
 
-          <!-- Load More -->
+          <!-- Infinite Scroll Sentinel -->
           <div
-            v-if="hasMore"
-            class="text-center mt-8"
+            ref="sentinel"
+            class="w-full py-12 flex items-center justify-center"
           >
-            <button
-              @click="loadMore"
-              class="px-8 py-3 bg-dark-700 hover:bg-dark-600 text-dark-50 rounded-xl font-medium transition-all border border-dark-600 hover:border-primary-500"
-              :disabled="loading"
+            <div
+              v-if="loading || hasMore"
+              class="flex flex-col items-center gap-3"
             >
-              {{ loading ? 'Loading...' : 'Load More Companies' }}
-            </button>
+              <div class="w-10 h-10 border-4 border-primary-500/20 border-t-primary-500 rounded-full animate-spin"></div>
+              <p class="text-dark-400 text-sm font-medium">Loading more companies...</p>
+            </div>
           </div>
         </div>
       </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-dark-700 bg-dark-900/50">
-      <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p class="text-dark-500 text-sm">
-            © 2026 FiveM Stock Exchange. All rights reserved.
-          </p>
-          <div class="flex gap-6">
-            <a href="#" class="text-dark-400 hover:text-dark-50 text-sm transition-colors">Terms</a>
-            <a href="#" class="text-dark-400 hover:text-dark-50 text-sm transition-colors">Privacy</a>
-            <a href="#" class="text-dark-400 hover:text-dark-50 text-sm transition-colors">Help</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import CompanyCard from './components/CompanyCard.vue'
 import StockTicker from './components/StockTicker.vue'
 import SearchBar from './components/SearchBar.vue'
@@ -218,6 +202,8 @@ const searchQuery = ref('')
 const activeFilter = ref('all')
 const itemsPerPage = ref(9)
 const loading = ref(false)
+const sentinel = ref<HTMLElement | null>(null)
+let observer: IntersectionObserver | null = null
 
 // Filters
 const filters = [
@@ -322,6 +308,25 @@ const handleTrade = (company: Company) => {
 onMounted(() => {
   connect()
   loadCompanies()
+
+  // Setup infinite scroll observer
+  observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && hasMore.value && !loading.value) {
+      loadMore()
+    }
+  }, {
+    rootMargin: '200px'
+  })
+
+  if (sentinel.value) {
+    observer.observe(sentinel.value)
+  }
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
 })
 </script>
 
