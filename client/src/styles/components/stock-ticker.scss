@@ -57,12 +57,12 @@
 .ticker-item {
   display: flex;
   align-items: center;
-  gap: $spacing-lg;
-  padding: $spacing-sm $spacing-lg;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-md;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: $radius-lg;
-  min-width: 200px;
+  min-width: fit-content;
   transition: all $transition-normal;
 
   &:hover {
@@ -73,8 +73,8 @@
 }
 
 .ticker-logo {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: $radius-md;
   background: rgba(255, 255, 255, 0.05);
   display: flex;
@@ -86,11 +86,11 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 4px;
+    padding: 2px;
   }
 
   .logo-text {
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     font-weight: 700;
     color: $primary-500;
     text-transform: uppercase;
@@ -98,38 +98,49 @@
 }
 
 .ticker-info {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xs;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .ticker-name {
   font-size: $font-size-sm;
   font-weight: 600;
   color: $dark-50;
-  margin-bottom: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .ticker-symbol {
   font-size: $font-size-xs;
   color: $dark-500;
   font-weight: 500;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .ticker-price {
-  text-align: right;
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+  white-space: nowrap;
 
   .price {
-    font-size: $font-size-lg;
+    font-size: $font-size-sm;
     font-weight: 700;
     color: $dark-50;
     font-variant-numeric: tabular-nums;
   }
 
   .change {
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     font-weight: 600;
 
     &.positive {
@@ -152,7 +163,7 @@
 // Responsive
 @media (max-width: 768px) {
   .ticker-item {
-    min-width: 160px;
+    min-width: fit-content;
     padding: $spacing-sm;
     gap: $spacing-sm;
   }

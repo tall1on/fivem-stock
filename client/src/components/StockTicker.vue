@@ -17,17 +17,17 @@
             <span v-else class="logo-text">{{ getInitials(company.name) }}</span>
           </div>
           <div class="ticker-info">
-            <div class="ticker-name">{{ company.name }}</div>
-            <div class="ticker-symbol">{{ company.ticker?.join(' / ') || 'N/A' }}</div>
+            <span class="ticker-name">{{ company.name }}</span>
+            <span class="ticker-symbol">{{ company.ticker?.[0] || 'N/A' }}</span>
           </div>
           <div class="ticker-price">
-            <div class="price">{{ formatPrice(company.price) }}</div>
-            <div
+            <span class="price">{{ formatPrice(company.price) }}</span>
+            <span
               class="change"
               :class="{ positive: isPositive(company), negative: !isPositive(company) }"
             >
               {{ formatChange(company.change) }}
-            </div>
+            </span>
           </div>
         </div>
         <!-- Duplicate for seamless loop -->
@@ -46,17 +46,17 @@
             <span v-else class="logo-text">{{ getInitials(company.name) }}</span>
           </div>
           <div class="ticker-info">
-            <div class="ticker-name">{{ company.name }}</div>
-            <div class="ticker-symbol">{{ company.ticker?.join(' / ') || 'N/A' }}</div>
+            <span class="ticker-name">{{ company.name }}</span>
+            <span class="ticker-symbol">{{ company.ticker?.[0] || 'N/A' }}</span>
           </div>
           <div class="ticker-price">
-            <div class="price">{{ formatPrice(company.price) }}</div>
-            <div
+            <span class="price">{{ formatPrice(company.price) }}</span>
+            <span
               class="change"
               :class="{ positive: isPositive(company), negative: !isPositive(company) }"
             >
               {{ formatChange(company.change) }}
-            </div>
+            </span>
           </div>
         </div>
       </div>
