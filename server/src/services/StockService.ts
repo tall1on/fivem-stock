@@ -140,6 +140,94 @@ export class StockService {
   }
 
   /**
+   * Returns a range of historical prices for a stock based on a named range.
+   * Supported ranges: 1d, 5d, 1m, ytd, 1y, 5y, max
+   */
+  public async getHistoryRange(ticker: string, range: string): Promise<PricePoint[]> {
+    const currentHour = this.getCurrentHourIndex();
+    let fromHour = 0;
+    let step = 1;
+
+    const now = new Date();
+
+    switch (range.toLowerCase()) {
+      case '1d':
+        fromHour = currentHour - 24;
+        step = 1;
+        break;
+      case '5d':
+        fromHour = currentHour - 120;
+        step = 1;
+        break;
+      case '1m':
+        fromHour = currentHour - (24 * 30);
+        step = 4; // Every 4 hours
+        break;
+      case 'ytd':
+        const startOfYear = new Date(now.getFullYear(), 0, 1);
+        const diffMs = startOfYear.getTime() - START_DATE.getTime();
+        fromHour = Math.floor(diffMs / (1000 * 60 * 60));
+        step = 24; // Daily
+        break;
+      case '1y':
+        fromHour = currentHour - (24 * 365);
+        step = 24; // Daily
+        break;
+      case '5y':
+        fromHour = currentHour - (24 * 365 * 5);
+        step = 24 * 7; // Weekly
+        break;
+      case 'max':
+        fromHour = 0;
+        // Dynamic step based on total hours
+        if (currentHour > 24 * 365 * 2) {
+          step = 24 * 7; // Weekly if > 2 years
+        } else if (currentHour > 24 * 30 * 6) {
+          step = 24; // Daily if > 6 months
+        } else {
+          step = 4;
+        }
+        break;
+      default:
+        fromHour = currentHour - 24;
+        step = 1;
+    }
+
+    fromHour = Math.max(0, fromHour);
+
+    // Ensure prices are calculated up to currentHour
+    const cache = await this.ensurePricesCalculated(ticker, currentHour);
+
+    const history: PricePoint[] = [];
+    for (let h = fromHour; h <= currentHour; h += step) {
+      if (cache.history[h] !== undefined) {
+        history.push({
+          hourIndex: h,
+          timestamp: this.getTimestampForHour(h),
+          price: cache.history[h]
+        });
+      }
+    }
+
+    // Always ensure the latest price is included
+    if (history.length > 0 && history[history.length - 1].hourIndex !== currentHour) {
+      history.push({
+        hourIndex: currentHour,
+        timestamp: this.getTimestampForHour(currentHour),
+        price: cache.history[currentHour]
+      });
+    } else if (history.length === 0 && cache.history[currentHour] !== undefined) {
+      history.push({
+        hourIndex: currentHour,
+        timestamp: this.getTimestampForHour(currentHour),
+        price: cache.history[currentHour]
+      });
+    }
+
+    return history;
+  }
+
+  /**
    * Returns a range of historical prices for a stock.
    */
   public async getPriceHistory(ticker: string, fromHour: number, toHour: number): Promise<PricePoint[]> {
