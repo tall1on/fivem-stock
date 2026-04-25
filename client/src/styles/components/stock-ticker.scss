@@ -65,6 +65,7 @@
   min-width: fit-content;
   transition: all $transition-normal;
   margin-right: $spacing-2xl;
+  cursor: pointer;
 
   &:hover {
     background: rgba(59, 130, 246, 0.1);

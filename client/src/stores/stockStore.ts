@@ -19,12 +19,14 @@ export interface Company {
   volume?: number;
 }
 
+export type HistoryRange = '1d' | '5d' | '1m' | 'ytd' | '1y' | '5y' | 'max';
+
 export const useStockStore = defineStore('stock', () => {
   const companies = ref<Company[]>([]);
   const prices = ref<Record<string, number>>({});
   const previousPrices = ref<Record<string, number>>({});
   const dayStartPrices = ref<Record<string, number>>({});
-  const history = ref<Record<string, PricePoint[]>>({});
+  const history = ref<Record<string, Record<string, PricePoint[]>>>({});
   const isConnected = ref(false);
 
   /**
@@ -70,10 +72,13 @@ export const useStockStore = defineStore('stock', () => {
   }
 
   /**
-   * Sets the history data for a specific ticker.
+   * Sets the history data for a specific ticker and range.
    */
-  function setHistory(ticker: string, data: PricePoint[]) {
-    history.value[ticker] = data;
+  function setHistory(ticker: string, data: PricePoint[], range: string = '1d') {
+    if (!history.value[ticker]) {
+      history.value[ticker] = {};
+    }
+    history.value[ticker][range] = data;
   }
 
   /**

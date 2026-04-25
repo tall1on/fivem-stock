@@ -9,6 +9,7 @@
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.5s ease-out forwards;
+  cursor: pointer;
 
   &::before {
     content: '';

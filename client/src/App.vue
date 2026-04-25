@@ -51,10 +51,18 @@
       <!-- Live Ticker -->
       <StockTicker
         :companies="displayedCompanies"
+        @select="handleViewDetails"
+      />
+
+      <!-- Single Stock View -->
+      <StockDetail
+        v-if="selectedCompany"
+        :company="selectedCompany"
+        @back="selectedCompany = null"
       />
 
       <!-- Companies Grid -->
-      <section class="py-8 px-4 md:px-8">
+      <section v-else class="py-8 px-4 md:px-8">
         <div class="max-w-7xl mx-auto">
           <!-- Section Header -->
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
@@ -185,12 +193,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, defineAsyncComponent } from 'vue'
 import CompanyCard from './components/CompanyCard.vue'
 import StockTicker from './components/StockTicker.vue'
 import SearchBar from './components/SearchBar.vue'
 import { useStockStore, type Company } from './stores/stockStore'
 import { useWebSocket } from './composables/useWebSocket'
+
+// Dynamic Imports
+const StockDetail = defineAsyncComponent(() => import('./components/StockDetail.vue'))
 
 // Store & WebSocket
 const store = useStockStore()
@@ -199,6 +210,7 @@ const { connect, subscribe } = useWebSocket()
 // State
 const searchQuery = ref('')
 const activeFilter = ref('all')
+const selectedCompany = ref<Company | null>(null)
 const itemsPerPage = ref(9)
 const loading = ref(false)
 const sentinel = ref<HTMLElement | null>(null)
@@ -293,11 +305,14 @@ const resetSearch = () => {
 }
 
 const handleCompanySelect = (company: Company) => {
-  console.log('Selected company:', company)
+  selectedCompany.value = company
+  searchQuery.value = ''
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const handleViewDetails = (company: Company) => {
-  console.log('View details:', company)
+  selectedCompany.value = company
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const handleTrade = (company: Company) => {

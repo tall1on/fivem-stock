@@ -3,6 +3,7 @@
     class="company-card"
     :class="{ 'positive-change': isPositive, 'negative-change': !isPositive }"
     :style="{ animationDelay: `${staggerDelay}ms` }"
+    @click="$emit('details')"
   >
     <div class="company-header">
       <div class="company-logo">

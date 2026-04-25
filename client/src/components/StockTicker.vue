@@ -5,7 +5,8 @@
         <div
           v-for="(company, index) in displayCompanies"
           :key="`${company.name}-${index}`"
-          class="ticker-item"
+          class="ticker-item clickable"
+          @click="$emit('select', company)"
         >
           <div class="ticker-logo">
             <img
@@ -34,7 +35,8 @@
         <div
           v-for="(company, index) in displayCompanies"
           :key="`${company.name}-dup-${index}`"
-          class="ticker-item"
+          class="ticker-item clickable"
+          @click="$emit('select', company)"
         >
           <div class="ticker-logo">
             <img
@@ -79,6 +81,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const store = useStockStore()
+
+defineEmits<{
+  select: [company: Company]
+}>()
 
 const displayCompanies = computed(() => {
   const baseCompanies = props.companies && props.companies.length > 0 

@@ -58,7 +58,7 @@ export function useWebSocket() {
             break;
           case 'history_data':
             if (data.ticker && data.history) {
-              store.setHistory(data.ticker, data.history);
+              store.setHistory(data.ticker, data.history, data.range || '1d');
             }
             break;
           case 'error':
