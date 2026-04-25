@@ -5,20 +5,20 @@
 
 .search-wrapper {
   position: relative;
-  max-width: 500px;
   width: 100%;
 }
 
 .search-input {
   width: 100%;
-  padding: $spacing-md $spacing-xl;
-  padding-left: 3.5rem;
-  font-size: $font-size-base;
+  padding: $spacing-sm $spacing-xl;
+  padding-left: 3rem;
+  height: 42px;
+  font-size: $font-size-sm;
   font-weight: 500;
   color: $dark-50;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: $radius-xl;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-lg;
   backdrop-filter: blur(20px);
   transition: all $transition-normal;
   outline: none;
@@ -28,25 +28,32 @@
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
   }
 
   &:focus {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     border-color: $primary-500;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
 }
 
 .search-icon {
   position: absolute;
-  left: $spacing-lg;
+  left: $spacing-md;
   top: 50%;
   transform: translateY(-50%);
   color: $dark-500;
   pointer-events: none;
   transition: color $transition-normal;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 
   .search-input:focus ~ & {
     color: $primary-500;
