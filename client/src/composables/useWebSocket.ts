@@ -4,13 +4,14 @@ import { getApiKey } from '../utils/auth';
 
 export type HistoryRange = '1d' | '5d' | '1m' | 'ytd' | '1y' | '5y' | 'max';
 
+const socket = ref<WebSocket | null>(null);
+const reconnectTimeout = ref<number | null>(null);
+
 /**
  * Composable for managing WebSocket connection and communication.
  */
 export function useWebSocket() {
   const store = useStockStore();
-  const socket = ref<WebSocket | null>(null);
-  const reconnectTimeout = ref<number | null>(null);
 
   /**
    * Establishes a WebSocket connection.
@@ -126,7 +127,8 @@ export function useWebSocket() {
   };
 
   onUnmounted(() => {
-    disconnect();
+    // Don't disconnect the shared socket when a component unmounts
+    // The socket is shared across all component instances
   });
 
   return {
