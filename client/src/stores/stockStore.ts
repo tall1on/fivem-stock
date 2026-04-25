@@ -23,6 +23,7 @@ export const useStockStore = defineStore('stock', () => {
   const companies = ref<Company[]>([]);
   const prices = ref<Record<string, number>>({});
   const previousPrices = ref<Record<string, number>>({});
+  const dayStartPrices = ref<Record<string, number>>({});
   const history = ref<Record<string, PricePoint[]>>({});
   const isConnected = ref(false);
 
@@ -42,12 +43,18 @@ export const useStockStore = defineStore('stock', () => {
    * Updates the price for a specific ticker.
    * Also updates the corresponding company object.
    */
-  function updateStockPrice(ticker: string, price: number) {
+  function updateStockPrice(ticker: string, price: number, dayStartPrice?: number) {
     if (prices.value[ticker] !== undefined) {
       previousPrices.value[ticker] = prices.value[ticker];
     } else {
       // If we don't have a previous price, use the current one to avoid huge jumps
       previousPrices.value[ticker] = price;
+    }
+
+    if (dayStartPrice !== undefined) {
+      dayStartPrices.value[ticker] = dayStartPrice;
+    } else if (dayStartPrices.value[ticker] === undefined) {
+      dayStartPrices.value[ticker] = price;
     }
     
     prices.value[ticker] = price;
@@ -55,10 +62,10 @@ export const useStockStore = defineStore('stock', () => {
     // Update company object in the list
     const company = companies.value.find(c => c.ticker.includes(ticker));
     if (company) {
-      const oldPrice = previousPrices.value[ticker];
+      const referencePrice = dayStartPrices.value[ticker] ?? previousPrices.value[ticker];
       company.price = price;
-      company.change = price - oldPrice;
-      company.changePercent = oldPrice !== 0 ? ((price - oldPrice) / oldPrice) * 100 : 0;
+      company.change = price - referencePrice;
+      company.changePercent = referencePrice !== 0 ? ((price - referencePrice) / referencePrice) * 100 : 0;
     }
   }
 
@@ -80,6 +87,7 @@ export const useStockStore = defineStore('stock', () => {
     companies,
     prices,
     previousPrices,
+    dayStartPrices,
     history,
     isConnected,
     setCompanies,

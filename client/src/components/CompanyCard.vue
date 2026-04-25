@@ -107,14 +107,14 @@ const currentPrice = computed(() => {
 })
 
 const priceChange = computed(() => {
-  const oldPrice = store.previousPrices[ticker.value] ?? currentPrice.value
-  return currentPrice.value - oldPrice
+  const referencePrice = store.dayStartPrices[ticker.value] ?? store.previousPrices[ticker.value] ?? currentPrice.value
+  return currentPrice.value - referencePrice
 })
 
 const priceChangePercent = computed(() => {
-  const oldPrice = store.previousPrices[ticker.value] ?? currentPrice.value
-  if (oldPrice === 0) return 0
-  return ((currentPrice.value - oldPrice) / oldPrice) * 100
+  const referencePrice = store.dayStartPrices[ticker.value] ?? store.previousPrices[ticker.value] ?? currentPrice.value
+  if (referencePrice === 0) return 0
+  return ((currentPrice.value - referencePrice) / referencePrice) * 100
 })
 
 const initials = computed(() => {

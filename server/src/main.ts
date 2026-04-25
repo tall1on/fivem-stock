@@ -20,6 +20,7 @@ export interface OutgoingMessage {
   type: 'stock_update' | 'history_data' | 'error';
   ticker?: string;
   price?: number;
+  dayStartPrice?: number;
   hourIndex?: number;
   history?: PricePoint[];
   range?: HistoryRange;
@@ -84,12 +85,19 @@ const server = Bun.serve({
             if (ticker) {
               ws.subscribe(`stock:${ticker}`);
               // Send current price immediately upon subscription
-              const price = await stockService.getCurrentPrice(ticker);
+              const currentHourIndex = stockService.getCurrentHourIndex();
+              const dayStartHourIndex = Math.floor(currentHourIndex / 24) * 24;
+              const [price, dayStartPrice] = await Promise.all([
+                stockService.getCurrentPrice(ticker),
+                stockService.getPriceAtHour(ticker, dayStartHourIndex)
+              ]);
+              
               ws.send(JSON.stringify({
                 type: 'stock_update',
                 ticker,
                 price,
-                hourIndex: stockService.getCurrentHourIndex()
+                dayStartPrice,
+                hourIndex: currentHourIndex
               } as OutgoingMessage));
             }
             break;
@@ -100,12 +108,19 @@ const server = Bun.serve({
             break;
           case 'get_stock':
             if (ticker) {
-              const price = await stockService.getCurrentPrice(ticker);
+              const currentHourIndex = stockService.getCurrentHourIndex();
+              const dayStartHourIndex = Math.floor(currentHourIndex / 24) * 24;
+              const [price, dayStartPrice] = await Promise.all([
+                stockService.getCurrentPrice(ticker),
+                stockService.getPriceAtHour(ticker, dayStartHourIndex)
+              ]);
+
               ws.send(JSON.stringify({
                 type: 'stock_update',
                 ticker,
                 price,
-                hourIndex: stockService.getCurrentHourIndex()
+                dayStartPrice,
+                hourIndex: currentHourIndex
               } as OutgoingMessage));
             }
             break;
@@ -151,14 +166,20 @@ setInterval(async () => {
   if (currentHourIndex !== lastHourIndex) {
     console.log(`Hour changed from ${lastHourIndex} to ${currentHourIndex}. Broadcasting updates...`);
     lastHourIndex = currentHourIndex;
+    const dayStartHourIndex = Math.floor(currentHourIndex / 24) * 24;
     
     for (const ticker of allTickers) {
       try {
-        const price = await stockService.getCurrentPrice(ticker);
+        const [price, dayStartPrice] = await Promise.all([
+          stockService.getCurrentPrice(ticker),
+          stockService.getPriceAtHour(ticker, dayStartHourIndex)
+        ]);
+
         server.publish(`stock:${ticker}`, JSON.stringify({
           type: 'stock_update',
           ticker,
           price,
+          dayStartPrice,
           hourIndex: currentHourIndex
         }));
       } catch (error) {

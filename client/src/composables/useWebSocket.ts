@@ -53,7 +53,7 @@ export function useWebSocket() {
         switch (data.type) {
           case 'stock_update':
             if (data.ticker && data.price !== undefined) {
-              store.updateStockPrice(data.ticker, data.price);
+              store.updateStockPrice(data.ticker, data.price, data.dayStartPrice);
             }
             break;
           case 'history_data':

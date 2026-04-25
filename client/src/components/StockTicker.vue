@@ -98,8 +98,8 @@ const getPrice = (company: Company) => {
 const getChange = (company: Company) => {
   const ticker = getTicker(company)
   const current = getPrice(company)
-  const previous = store.previousPrices[ticker] ?? current
-  return current - previous
+  const reference = store.dayStartPrices[ticker] ?? store.previousPrices[ticker] ?? current
+  return current - reference
 }
 
 const isPositive = (company: Company) => getChange(company) >= 0

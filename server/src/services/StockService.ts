@@ -140,6 +140,14 @@ export class StockService {
   }
 
   /**
+   * Returns the price of a stock at a specific hour index.
+   */
+  public async getPriceAtHour(ticker: string, hourIndex: number): Promise<number> {
+    const cache = await this.ensurePricesCalculated(ticker, hourIndex);
+    return cache.history[hourIndex];
+  }
+
+  /**
    * Returns a range of historical prices for a stock based on a named range.
    * Supported ranges: 1d, 5d, 1m, ytd, 1y, 5y, max
    */
