@@ -1,0 +1,189 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-fixed;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: $spacing-md $spacing-xl;
+
+  @media (max-width: 640px) {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-xl;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  text-decoration: none;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $primary-500 0%, $primary-700 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: $font-size-lg;
+  color: $dark-50;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.header-title {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $dark-50;
+  letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+  font-size: $font-size-sm;
+  color: $dark-500;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.header-btn {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  border-radius: $radius-lg;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: $dark-300;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: $dark-50;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary-500;
+    outline-offset: 2px;
+  }
+
+  &.primary {
+    background: linear-gradient(135deg, $primary-500 0%, $primary-600 100%);
+    border-color: transparent;
+    color: $dark-50;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+    &:hover {
+      background: linear-gradient(135deg, $primary-600 0%, $primary-700 100%);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Market status indicator
+.market-status {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: $radius-sm;
+
+  &.open {
+    color: $success-500;
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  &.closed {
+    color: $danger-500;
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .header-content {
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  .header-title {
+    font-size: $font-size-lg;
+  }
+
+  .header-subtitle {
+    display: none;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-btn {
+    padding: $spacing-sm;
+    font-size: 0;
+
+    .btn-text {
+      display: none;
+    }
+  }
+
+  .market-status {
+    .status-text {
+      display: none;
+    }
+  }
+}
