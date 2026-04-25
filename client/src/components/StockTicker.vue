@@ -81,11 +81,20 @@ const props = withDefaults(defineProps<Props>(), {
 const store = useStockStore()
 
 const displayCompanies = computed(() => {
-  const companies = props.companies && props.companies.length > 0 
+  const baseCompanies = props.companies && props.companies.length > 0 
     ? props.companies 
     : store.companies
     
-  return companies.slice(0, 15)
+  if (baseCompanies.length === 0) return []
+  
+  // Ensure we have enough items to fill the screen and make the loop seamless
+  // We want at least 15 items, repeating if necessary
+  let items = [...baseCompanies]
+  while (items.length < 15) {
+    items = [...items, ...baseCompanies]
+  }
+  
+  return items.slice(0, 20) // Take a good amount of items
 })
 
 const getTicker = (company: Company) => company.ticker?.[0] || ''

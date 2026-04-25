@@ -45,9 +45,9 @@
 .ticker-track {
   display: flex;
   align-items: center;
-  gap: $spacing-2xl;
   padding: $spacing-md 0;
   animation: ticker-scroll 40s linear infinite;
+  width: max-content;
 
   &:hover {
     animation-play-state: paused;
@@ -64,6 +64,7 @@
   border-radius: $radius-lg;
   min-width: fit-content;
   transition: all $transition-normal;
+  margin-right: $spacing-2xl;
 
   &:hover {
     background: rgba(59, 130, 246, 0.1);
@@ -165,10 +166,10 @@
   .ticker-item {
     min-width: fit-content;
     padding: $spacing-sm;
-    gap: $spacing-sm;
+    margin-right: $spacing-lg;
   }
 
   .ticker-track {
-    gap: $spacing-lg;
+    padding: $spacing-sm 0;
   }
 }
