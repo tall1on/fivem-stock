@@ -1,7 +1,7 @@
 <template>
   <section class="stock-ticker-section" aria-label="Live stock ticker">
     <div class="ticker-wrapper">
-      <div class="ticker-track" :style="{ animationDuration: `${duration}s` }">
+      <div class="ticker-track" :style="{ animationDuration: `${animationDuration}s` }">
         <div
           v-for="(company, index) in displayCompanies"
           :key="`${company.name}-${index}`"
@@ -75,7 +75,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   companies: () => [],
-  duration: 40
+  duration: 0
 })
 
 const store = useStockStore()
@@ -94,7 +94,15 @@ const displayCompanies = computed(() => {
     items = [...items, ...baseCompanies]
   }
   
-  return items.slice(0, 20) // Take a good amount of items
+  return items
+})
+
+const animationDuration = computed(() => {
+  if (props.duration > 0) return props.duration
+  
+  // Calculate based on number of items
+  // 3 seconds per item seems like a good pace for a ticker
+  return Math.max(30, displayCompanies.value.length * 3)
 })
 
 const getTicker = (company: Company) => company.ticker?.[0] || ''

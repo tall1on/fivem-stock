@@ -51,7 +51,6 @@
       <!-- Live Ticker -->
       <StockTicker
         :companies="displayedCompanies"
-        :duration="40"
       />
 
       <!-- Companies Grid -->
@@ -253,7 +252,7 @@ const hasMore = computed(() => {
 })
 
 const displayedCompanies = computed(() => {
-  return store.companies.slice(0, 15)
+  return store.companies
 })
 
 // Methods
