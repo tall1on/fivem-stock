@@ -1,0 +1,20 @@
+{
+  "name": "fivem-stock-server",
+  "version": "1.0.0",
+  "description": "",
+  "license": "GNU GENERAL PUBLIC LICENSE 3.0",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/node": "25.6.0",
+    "@types/ws": "8.18.1",
+    "dotenv": "17.4.2",
+    "sqlite3": "6.0.1",
+    "typescript": "6.0.3",
+    "ws": "8.20.0"
+  }
+}

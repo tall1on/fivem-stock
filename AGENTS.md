@@ -1,0 +1,8 @@
+- use vuejs 3 setup api, vite, typescript
+- don't make mistakes, try to make it work first time and think a lot if necessary
+- don't care about token/cost, make sure you don't make mistakes
+- dont use python for anything
+- on client: use dynamic import() to code-split the application where possible
+- try to keep files under 1000 lines/efficent code split where makes sense
+- minimize code duplicates
+- validate changes only with "npx vue-tsc --noEmit" or build, don't run dev-server

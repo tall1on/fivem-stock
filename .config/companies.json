@@ -1,0 +1,595 @@
+[
+  {
+    "name": "Alpha Mail",
+    "ticker": [
+      "ALPH",
+      "MAIL"
+    ],
+    "logo": "Alpha-Mail-Logo",
+    "description": null,
+    "logoUrl": "/logo/Alpha-Mail-Logo.webp"
+  },
+  {
+    "name": "Ammu-Nation",
+    "ticker": [
+      "AMU"
+    ],
+    "logo": "Ammu-Nation-Logo, 2013",
+    "description": "Ammu-Nation ist ein Waffenhersteller, der die Gründe, eine Waffe zu besitzen, gleich mitliefert. Seit mehr als 50 Jahren ein unerschütterlicher Verfechter des freien Waffenhandels.",
+    "logoUrl": "/logo/Ammu-Nation-Logo_2013.PNG.webp"
+  },
+  {
+    "name": "Badger Communications",
+    "ticker": [
+      "BADR",
+      "BDG"
+    ],
+    "logo": "Badger-Logo",
+    "description": "Ein global tätiges Kommunikationsunternehmen aus einem Industrieland, das die Mobilfunk-Netzabdeckung eines Dritte-Welt-Staates bietet.",
+    "logoUrl": "/logo/Badger-Logo.webp"
+  },
+  {
+    "name": "Bank of Liberty",
+    "ticker": [
+      "BANK",
+      "LIB"
+    ],
+    "logo": "Bank-of-Liberty-Logo",
+    "description": null,
+    "logoUrl": "/logo/Bank-of-Liberty-Logo.PNG.webp"
+  },
+  {
+    "name": "BAWSAQ",
+    "ticker": [
+      "BAWS"
+    ],
+    "logo": "BAWSAQ-Logo",
+    "description": null,
+    "logoUrl": "/logo/BAWSAQ-Logo.PNG.webp"
+  },
+  {
+    "name": "Bean Machine",
+    "ticker": [
+      "BEAN"
+    ],
+    "logo": "Bean-Machine-Logo",
+    "description": null,
+    "logoUrl": "/logo/Bean-Machine-Logo.webp"
+  },
+  {
+    "name": "Betta Pharmaceuticals",
+    "ticker": [
+      "BETA",
+      "BET"
+    ],
+    "logo": "Baw-betta",
+    "description": "Mit bahnbrechenden medizinischen Erfolgen wie Mollis und dem Alco Patch versucht Betta Pharmaceuticals seit über 30 Jahren, die Amerikaner dünn, glücklich und steif werden zu lassen.",
+    "logoUrl": "/logo/Baw-betta.webp"
+  },
+  {
+    "name": "Biglogs",
+    "ticker": [
+      "BIGL"
+    ],
+    "logo": "Biglogs-Logo",
+    "description": null,
+    "logoUrl": "/logo/Biglogs-Logo.webp"
+  },
+  {
+    "name": "Binco",
+    "ticker": [
+      "BNCO",
+      "BIN"
+    ],
+    "logo": "Binco-Logo, 2008",
+    "description": "Minderwertige Kleidung zu günstigen Preisen. Hierher kommen die Modesünden, um zu sterben.",
+    "logoUrl": "/logo/Binco-Logo_2008.webp"
+  },
+  {
+    "name": "BitterSweet",
+    "ticker": [
+      "BTR"
+    ],
+    "logo": "BitterSweet-Logo",
+    "description": "Die originale mobile Waffe der Massenverzögerung.",
+    "logoUrl": "/logo/BitterSweet-Logo.webp"
+  },
+  {
+    "name": "Bleeter.biz",
+    "ticker": [
+      "BLE"
+    ],
+    "logo": "Bleeter Banner IV.png",
+    "description": "Bleeter ist ein Anbieter von sozialen Netzwerken und Microblogging-Diensten, der die gesamte Welt zu analphabetischen Freizeitjournalisten gemacht hat und sie groß von ihrer geistlosen Existenz berichten lässt.",
+    "logoUrl": "/logo/Bleeter_Banner_IV.png.webp"
+  },
+  {
+    "name": "Brute",
+    "ticker": [
+      "BRU"
+    ],
+    "logo": "Brute-Logo",
+    "description": "Hersteller übergroßer, umweltschädlicher Fahrzeuge, die für den gewerblichen Schwereinsatz gedacht sind, aber meist von Fußballmamis und Drogenhändlern im dichten Innenstadtverkehr gefahren werden.",
+    "logoUrl": "/logo/Brute-Logo.PNG.webp"
+  },
+  {
+    "name": "Burger Shot",
+    "ticker": [
+      "BSHT"
+    ],
+    "logo": "Burger-Shot-Logo",
+    "description": null,
+    "logoUrl": "/logo/Burger-Shot-Logo.webp"
+  },
+  {
+    "name": "Bürgerfahrzeug",
+    "ticker": [
+      "BFA"
+    ],
+    "logo": "Baw-bürgerfahrzeug",
+    "description": "Deutscher Automobilhersteller, welcher der Menschheit, abgesehen von einer ernsten Tiefphase zwischen 1939 und 1945, gute Dienste geleistet hat.",
+    "logoUrl": "/logo/Baw-bürgerfahrzeug.webp"
+  },
+  {
+    "name": "Candybox",
+    "ticker": [
+      "CABOX"
+    ],
+    "logo": "Candybox-Logo",
+    "description": null,
+    "logoUrl": "/logo/Candybox-Logo.PNG.webp"
+  },
+  {
+    "name": "Canyon Entertainment",
+    "ticker": [
+      "CANE"
+    ],
+    "logo": "Canyon-Entertainment-Logo, VCS",
+    "description": null,
+    "logoUrl": "/logo/Canyon-Entertainment-Logo_VCS.PNG.webp"
+  },
+  {
+    "name": "Cluckin’ Bell Corporation",
+    "ticker": [
+      "CUBEL"
+    ],
+    "logo": "Cluckin'-Bell-Logo",
+    "description": null,
+    "logoUrl": "/logo/Cluckin-Bell-Logo.PNG.webp"
+  },
+  {
+    "name": "Conglomerated National Television",
+    "ticker": [
+      "CNTU",
+      "CNT"
+    ],
+    "logo": "CNT Gold White IV",
+    "description": "International tätiger Fernsehsender, verantwortlich für ein bahnbrechendes Programm, das Amerika direkt über die Klippe führt.",
+    "logoUrl": "/logo/CNT_Gold_White_IV.webp"
+  },
+  {
+    "name": "Crevis",
+    "ticker": [
+      "CRE"
+    ],
+    "logo": "Crevis-Logo",
+    "description": "Freiluft-Sportbekleidung, zugeschnitten auf Stadtbewohner, die nur selten an die freie Luft kommen und kaum je irgendeinen Sport betreiben.",
+    "logoUrl": "/logo/Crevis-Logo.PNG.webp"
+  },
+  {
+    "name": "Daily Globe",
+    "ticker": [
+      "DGP"
+    ],
+    "logo": "Daily-Globe-Logo",
+    "description": "Reißerische und innovative Fantasiegeschichten, dargebracht in Zeitungsform.",
+    "logoUrl": "/logo/Daily-Globe-Logo.webp"
+  },
+  {
+    "name": "Eyefind",
+    "ticker": [
+      "EYEF",
+      "EYE"
+    ],
+    "logo": "Eyefind-Logo",
+    "description": "Die Suchmaschine, die alles über dich weiß, vor allem, weil sie Leute in Autos herumfahren und all deine privaten Daten sammeln lässt.",
+    "logoUrl": "/logo/Eyefind-Logo.PNG.webp"
+  },
+  {
+    "name": "eCola",
+    "ticker": [
+      "ECLA"
+    ],
+    "logo": "ECola-Logo",
+    "description": null,
+    "logoUrl": "/logo/ECola-Logo.PNG.webp"
+  },
+  {
+    "name": "Eris",
+    "ticker": [
+      "ERIS"
+    ],
+    "logo": "Eris Gelb Logo",
+    "description": null,
+    "logoUrl": "/logo/Eris_Gelb_Logo.webp"
+  },
+  {
+    "name": "Facade",
+    "ticker": [
+      "FAC"
+    ],
+    "logo": "Facade Logo HQ",
+    "description": "Betriebssystem-Diktatoren, Software-Monopolisten und Lizenzen-Abzocker.",
+    "logoUrl": "/logo/Facade_Logo_HQ.webp"
+  },
+  {
+    "name": "Fleeca",
+    "ticker": [
+      "FLEE"
+    ],
+    "logo": "Lcn-fleeca",
+    "description": null,
+    "logoUrl": "/logo/Lcn-fleeca.webp"
+  },
+  {
+    "name": "Fruit",
+    "ticker": [
+      "FRUC",
+      "FRT"
+    ],
+    "logo": "Fruit-Logo 1984 HQ VCS",
+    "description": "Lieferant weißer, glänzender Geräte zum Internetsurfen. Die größte Religion der Welt.",
+    "logoUrl": "/logo/Fruit-Logo_1984_HQ_VCS.webp"
+  },
+  {
+    "name": "Genic",
+    "ticker": [
+      "GNIC"
+    ],
+    "logo": "Genic-Logo",
+    "description": null,
+    "logoUrl": "/logo/Genic-Logo.PNG.webp"
+  },
+  {
+    "name": "Globe Oil",
+    "ticker": [
+      "GLBOIL"
+    ],
+    "logo": "Globe-Oil-Logo.PNG",
+    "description": null,
+    "logoUrl": "/logo/Globe-Oil-Logo.svg"
+  },
+  {
+    "name": "Gruppe Sechs",
+    "ticker": [
+      "GRUP",
+      "SECHS"
+    ],
+    "logo": "Gruppe-Sechs-Logo",
+    "description": null,
+    "logoUrl": "/logo/Gruppe-Sechs-Logo.PNG.webp"
+  },
+  {
+    "name": "Hawk & Little",
+    "ticker": [
+      "HAL"
+    ],
+    "logo": "Baw-hawkandlittle",
+    "description": "Der größte Schusswaffenhersteller der Vereinigten Staaten. Beschützt Amerikaner seit 1850 voreinander.",
+    "logoUrl": "/logo/Baw-hawkandlittle.webp"
+  },
+  {
+    "name": "heat",
+    "ticker": [
+      "HEAT"
+    ],
+    "logo": "Heat-Logo",
+    "description": null,
+    "logoUrl": "/logo/Heat-Logo.webp"
+  },
+  {
+    "name": "HVY Industries",
+    "ticker": [
+      "HVY"
+    ],
+    "logo": "Baw-hvy",
+    "description": "Hersteller von Fahrzeugen, Motoren und Maschinen. Früher auf den amerikanischen Markt konzentriert, jetzt in Ländern tätig, in denen tatsächlich noch etwas angebaut und produziert wird.",
+    "logoUrl": "/logo/Baw-hvy.webp"
+  },
+  {
+    "name": "Liberty Sports Network",
+    "ticker": [
+      "LSNW"
+    ],
+    "logo": "Liberty Sports Network Logo",
+    "description": null,
+    "logoUrl": "/logo/Liberty_Sports_Network_Logo.webp"
+  },
+  {
+    "name": "Logger",
+    "ticker": [
+      "LOGR"
+    ],
+    "logo": "Logger-Beer-Logo, IV",
+    "description": null,
+    "logoUrl": "/logo/Logger-Beer-Logo_IV.PNG.webp"
+  },
+  {
+    "name": "Lombank",
+    "ticker": [
+      "LOMB"
+    ],
+    "logo": "LomBank Logo",
+    "description": null,
+    "logoUrl": "/logo/LomBank_Logo.webp"
+  },
+  {
+    "name": "Los Santos Customs",
+    "ticker": [
+      "LSC"
+    ],
+    "logo": "LS Customs, Logo V",
+    "description": "Landesweiter Marktführer bei Tuning-Teilen. Nicht zu verwechseln mit den netten Leuten, die einen bei der Ankunft am Internationalen Flughafen von Los Santos mit Gummihandschuhen begrüßen.",
+    "logoUrl": "/logo/LS_Customs_Logo_V.webp"
+  },
+  {
+    "name": "Los Santos Department of Water & Power",
+    "ticker": [
+      "WAP"
+    ],
+    "logo": "Los Santos Department of Water & Power Logo V",
+    "description": "Versorgungsunternehmen, das traditionelle Energiequellen nutzt und San Andreas in landwirtschaftlicher, aber nicht in ökologischer Hinsicht grün hält.",
+    "logoUrl": "/logo/Los_Santos_Department_of_Water_Power_Logo_V.webp"
+  },
+  {
+    "name": "Los Santos Transit",
+    "ticker": [
+      "LST"
+    ],
+    "logo": "Los Santos Transit logo",
+    "description": "Los Santos Transit besitzt und betreibt das öffentliche Nahverkehrssystem, das kein Einwohner der Stadt wirklich benutzt.",
+    "logoUrl": "/logo/Los_Santos_Transit_logo.webp"
+  },
+  {
+    "name": "LTD Gasoline",
+    "ticker": [
+      "LTD"
+    ],
+    "logo": "LTD-Gasoline-Logo.PNG",
+    "description": "Ein Laden, in dem es Benzin, Süßigkeiten, Kartoffelchips, Lotterielose und Limonade zu kaufen gibt. Der amerikanische Traum.",
+    "logoUrl": "/logo/LTD-Gasoline-Logo.PNG.webp"
+  },
+  {
+    "name": "Maibatsu Corporation",
+    "ticker": [
+      "MAI"
+    ],
+    "logo": "Maibatsu-Logo",
+    "description": "Ein multinationales japanisches Konglomerat, das Autos, Elektrogeräte, Marschflugkörper und nahezu jedes andere Produkt auf der Erde herstellt. Die Definition von überdiversifiziert.",
+    "logoUrl": "/logo/Maibatsu-Logo.PNG.webp"
+  },
+  {
+    "name": "Max Renda",
+    "ticker": [
+      "MAXR"
+    ],
+    "logo": "Lcn-maxrenda",
+    "description": null,
+    "logoUrl": "/logo/Lcn-maxrenda.webp"
+  },
+  {
+    "name": "Music and Entertainment TV",
+    "ticker": [
+      "METV"
+    ],
+    "logo": "MeTV-Logo, VCS",
+    "description": null,
+    "logoUrl": "/logo/MeTV-Logo_VCS.PNG.webp"
+  },
+  {
+    "name": "Nx-Jn",
+    "ticker": [
+      "NXJN"
+    ],
+    "logo": "Nx-Jn-Logo",
+    "description": null,
+    "logoUrl": "/logo/Nx-Jn-Logo.PNG.webp"
+  },
+  {
+    "name": "Pißwasser",
+    "ticker": [
+      "PIS"
+    ],
+    "logo": "Pißwasser-Logo",
+    "description": "Billiges, mindestens elfprozentiges Kampf-Lagerbier, das in Deutschland nur für den Export aus Reis, Gerste, Hopfen und dem frischen Urin bayerischer Jungfrauen gebraut wird.",
+    "logoUrl": "/logo/Pißwasser-Logo.PNG.webp"
+  },
+  {
+    "name": "Ponsonbys",
+    "ticker": [
+      "PON"
+    ],
+    "logo": "Ponsonbys Wortmarke",
+    "description": "Eine Kette von Geschäften für Luxuskleidung und ausgesuchte Accessoires. Richtet sich an Kunden, für die Preis, Bescheidenheit und die weltweite Armut keine Rolle spielen.",
+    "logoUrl": "/logo/Ponsonbys_Wortmarke.webp"
+  },
+  {
+    "name": "Pump & Run Gymnasium",
+    "ticker": [
+      "PMP"
+    ],
+    "logo": "Pump and Run Gymnasium wortmarke",
+    "description": "Landesweite Sportstudiokette. Spricht vorwiegend Bodybuilder an sowie Leute, die Sex mit Bodybuildern haben wollen, und Bodybuilder, die Sex miteinander haben wollen.",
+    "logoUrl": "/logo/Pump_and_Run_Gymnasium_wortmarke.webp"
+  },
+  {
+    "name": "RON",
+    "ticker": [
+      "RONO",
+      "RON"
+    ],
+    "logo": "RON-Logo 3",
+    "description": "Einer der Ölmultis, denen wir die sengend heißen Sommer der letzten Jahre zu verdanken haben.",
+    "logoUrl": "/logo/RON-Logo_3.PNG.webp"
+  },
+  {
+    "name": "SchlongbergSachs",
+    "ticker": [
+      "SCHL",
+      "SACHS"
+    ],
+    "logo": "SchlongbergSachs-Logo",
+    "description": null,
+    "logoUrl": "/logo/SchlongbergSachs-Logo.PNG.webp"
+  },
+  {
+    "name": "Schmidt & Priss",
+    "ticker": [
+      "SCHM",
+      "PRIS"
+    ],
+    "logo": "Schmidt-&-Priss-Logo",
+    "description": null,
+    "logoUrl": "/logo/Schmidt-Priss-Logo.PNG.webp"
+  },
+  {
+    "name": "Schyster",
+    "ticker": [
+      "SHT"
+    ],
+    "logo": "Baw-schyster",
+    "description": "Hersteller unzuverlässiger Mittelklassewagen, die nach einem Jahr die Hälfte ihres Werts verlieren und die andere Hälfte durch Reparaturkosten verschlingen. In deutschem Besitz, von Amerikanern finanziell gerettet.",
+    "logoUrl": "/logo/Baw-schyster.webp"
+  },
+  {
+    "name": "Shark",
+    "ticker": [
+      "SHRK",
+      "SHK"
+    ],
+    "logo": "SHARK-Logo",
+    "description": "Eine glänzende Karte. Bietet eine lebenslange Mitgliedschaft im Club der Schuldsklaven.",
+    "logoUrl": "/logo/SHARK-Logo.PNG.webp"
+  },
+  {
+    "name": "Shrewsbury Shotguns",
+    "ticker": [
+      "SHR"
+    ],
+    "logo": "Shrewsbury Shotguns Wortmarke",
+    "description": "Hersteller von Waffen seit dem 19. Jahrhundert und dem Gewehr, das (je nach Bundesstaat, in dem man zur Schule geht) entweder ›uns den Westen erkämpfte‹ oder ›die indigene Bevölkerung des Westens abschlachtete‹.",
+    "logoUrl": "/logo/Shrewsbury_Shotguns_Wortmarke.webp"
+  },
+  {
+    "name": "Sprunk Incorporated",
+    "ticker": [
+      "SPUK",
+      "SPU"
+    ],
+    "logo": "Sprunk-Logo",
+    "description": "Hersteller von Sprudelwasser, dem mit synthetischen Zusätzen und Glucose-Fructose-Sirup im Wert von 800 Kalorien Geschmack verliehen wird.",
+    "logoUrl": "/logo/Sprunk-Logo.PNG.webp"
+  },
+  {
+    "name": "SubUrban",
+    "ticker": [
+      "SUB"
+    ],
+    "logo": "SubUrban-Logo2",
+    "description": "Sportlich-elegante, schäbig-schicke ›Modern Vintage‹-Massenproduktionsmode. Der eigenen Identität so unsicher wie die androgynen Twens, die dort einkaufen.",
+    "logoUrl": "/logo/SubUrban-Logo2.webp"
+  },
+  {
+    "name": "The Grain of Truth",
+    "ticker": [
+      "GOT"
+    ],
+    "logo": "Baw-thegrainoftruth",
+    "description": "Lachhaft überteuerte Öko-Gourmet-Lebensmittel, die unter dem Deckmäntelchen von sozialer Verantwortung und Umweltbewusstsein vermarktet werden.",
+    "logoUrl": "/logo/Baw-thegrainoftruth.webp"
+  },
+  {
+    "name": "Tinkle Telecom Corp.",
+    "ticker": [
+      "TIKL",
+      "TNK"
+    ],
+    "logo": "Tinkle-Logo",
+    "description": "Ein nordamerikanischer Mobilfunkbetreiber mit einer furchtbaren nordamerikanischen Netzabdeckung.",
+    "logoUrl": "/logo/Tinkle-Logo.webp"
+  },
+  {
+    "name": "Übermacht",
+    "ticker": [
+      "UMA"
+    ],
+    "logo": "Baw-übermacht",
+    "description": "Deutscher Luxuswagenhersteller. Präzise gefertigte Statussymbole für reiche Menschen.",
+    "logoUrl": "/logo/Baw-Übermacht.webp"
+  },
+  {
+    "name": "Vapid Motor Company",
+    "ticker": [
+      "VAP"
+    ],
+    "logo": "Vapid Logo 2",
+    "description": "Der Automobilhersteller, der dem großen amerikanischen Geschäftsmodell der Massenproduktion minderwertiger Ware den Weg bereitet hat.",
+    "logoUrl": "/logo/Vapid_Logo_2.webp"
+  },
+  {
+    "name": "Vom Feuer Gun Manufacturers",
+    "ticker": [
+      "VOM"
+    ],
+    "logo": "Baw-vomfeuer",
+    "description": "Ein Waffenproduzent mit Sitz in Wien, berühmt für seine Pistolen. Vom Feuer ist eine österreichische Kriegsikone, hinter der sich das amerikanische Volk versammeln kann.",
+    "logoUrl": "/logo/Baw-vomfeuer.webp"
+  },
+  {
+    "name": "Weazel",
+    "ticker": [
+      "WZNT",
+      "WZL"
+    ],
+    "logo": "Baw-weazelnetwork",
+    "description": "Das Sprachrohr, durch das gleichzeitig moralische Entrüstung und kultureller Hedonismus in amerikanische Wohnzimmer geblasen werden.",
+    "logoUrl": "/logo/Baw-weazelnetwork.webp"
+  },
+  {
+    "name": "Whiz Wireless Communication",
+    "ticker": [
+      "WHIZ",
+      "WIZ"
+    ],
+    "logo": "Whiz-Logo",
+    "description": "Ein Mobilfunkbetreiber, der den Markt bedrängte, indem er Leuten mit schlechter Bonität schlechte Dienstleistungen anbot.",
+    "logoUrl": "/logo/Whiz-Logo.PNG.webp"
+  },
+  {
+    "name": "Wiwang",
+    "ticker": [
+      "WIW"
+    ],
+    "logo": "Wiwang-Logo",
+    "description": "Eine südkoreanische Elektronikfirma, deren gesamtes Geschäftsmodell darauf beruht, minderwertige Kopien von Fruit-Produkten zu erstellen und sie ein paar Monate später zum halben Preis auf den Markt zu bringen.",
+    "logoUrl": "/logo/Wiwang-Logo.webp"
+  },
+  {
+    "name": "Xero Gas",
+    "ticker": [
+      "XGAS"
+    ],
+    "logo": "Xero-Gas-Logo.PNG",
+    "description": null,
+    "logoUrl": "/logo/Xero-Gas-Logo.PNG.webp"
+  },
+  {
+    "name": "ZiT",
+    "ticker": [
+      "ZIT"
+    ],
+    "logo": "ZiT-Logo",
+    "description": "Ein kommerzieller Musiksuchdienst für Handys, der zusätzlich der Regierung dabei hilft, dich auszuspionieren.",
+    "logoUrl": "/logo/ZiT-Logo.webp"
+  }
+]
