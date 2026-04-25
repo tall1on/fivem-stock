@@ -72,18 +72,7 @@
 
 <script setup lang="ts">
 import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue'
-
-interface Company {
-  name: string
-  ticker?: string[]
-  logo?: string
-  logoUrl?: string
-  description?: string | null
-  price?: number
-  change?: number
-  changePercent?: number
-  volume?: number
-}
+import type { Company } from '../stores/stockStore'
 
 interface Props {
   companies?: Company[]

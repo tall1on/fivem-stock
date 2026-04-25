@@ -19,7 +19,7 @@
 
         <div class="header-search flex-1 max-w-2xl mx-4">
           <SearchBar
-            :companies="companies"
+            :companies="store.companies"
             v-model="searchQuery"
             @select="handleCompanySelect"
           />
@@ -66,7 +66,7 @@
               <p class="text-dark-400">
                 {{ filteredCompanies.length > 0
                   ? `Found ${filteredCompanies.length} company${filteredCompanies.length !== 1 ? 'ies' : ''}`
-                  : `${companies.length} companies listed on the exchange`
+                  : `${store.companies.length} companies listed on the exchange`
                 }}
               </p>
             </div>
@@ -199,21 +199,14 @@ import { ref, computed, onMounted } from 'vue'
 import CompanyCard from './components/CompanyCard.vue'
 import StockTicker from './components/StockTicker.vue'
 import SearchBar from './components/SearchBar.vue'
+import { useStockStore, type Company } from './stores/stockStore'
+import { useWebSocket } from './composables/useWebSocket'
 
-interface Company {
-  name: string
-  ticker?: string[]
-  logo?: string
-  logoUrl?: string
-  description?: string | null
-  price?: number
-  change?: number
-  changePercent?: number
-  volume?: number
-}
+// Store & WebSocket
+const store = useStockStore()
+const { connect, subscribe } = useWebSocket()
 
 // State
-const companies = ref<Company[]>([])
 const searchQuery = ref('')
 const activeFilter = ref('all')
 const itemsPerPage = ref(9)
@@ -229,7 +222,7 @@ const filters = [
 
 // Computed
 const filteredCompanies = computed(() => {
-  let result = companies.value
+  let result = store.companies
 
   // Apply search filter
   if (searchQuery.value.trim()) {
@@ -259,7 +252,7 @@ const hasMore = computed(() => {
 })
 
 const displayedCompanies = computed(() => {
-  return companies.value.slice(0, 15)
+  return store.companies.slice(0, 15)
 })
 
 // Methods
@@ -269,87 +262,18 @@ const loadCompanies = async () => {
     const response = await fetch('/companies.json')
     if (response.ok) {
       const data = await response.json()
-      companies.value = data.map((company: any) => ({
-        ...company,
-        price: company.price || Math.random() * 500 + 10,
-        change: company.change || (Math.random() - 0.5) * 20,
-        changePercent: company.changePercent || (Math.random() - 0.5) * 10,
-        volume: company.volume || Math.floor(Math.random() * 10000000) + 100000
-      }))
+      store.setCompanies(data)
+      
+      // Subscribe to all tickers
+      data.forEach((company: Company) => {
+        if (company.ticker && company.ticker.length > 0) {
+          subscribe(company.ticker[0])
+        }
+      })
     }
   } catch (error) {
     console.error('Failed to load companies:', error)
-    // Fallback to sample data
-    companies.value = generateSampleData()
   }
-}
-
-const generateSampleData = () => {
-  const sampleNames = [
-    { name: 'Alpha Mail', ticker: ['ALPH', 'MAIL'], logoUrl: '/logo/Alpha-Mail-Logo.webp' },
-    { name: 'Ammu-Nation', ticker: ['AMU'], logoUrl: '/logo/Ammu-Nation-Logo_2013.PNG.webp' },
-    { name: 'Badger Communications', ticker: ['BADR', 'BDG'], logoUrl: '/logo/Badger-Logo.webp' },
-    { name: 'Bank of Liberty', ticker: ['BANK', 'LIB'], logoUrl: '/logo/Bank-of-Liberty-Logo.PNG.webp' },
-    { name: 'BAWSAQ', ticker: ['BAWS'], logoUrl: '/logo/BAWSAQ-Logo.PNG.webp' },
-    { name: 'Bean Machine', ticker: ['BEAN'], logoUrl: '/logo/Bean-Machine-Logo.webp' },
-    { name: 'Betta Pharmaceuticals', ticker: ['BETA', 'BET'], logoUrl: '/logo/Baw-betta.webp' },
-    { name: 'Biglogs', ticker: ['BIGL'], logoUrl: '/logo/Biglogs-Logo.webp' },
-    { name: 'Binco', ticker: ['BNCO', 'BIN'], logoUrl: '/logo/Binco-Logo_2008.webp' },
-    { name: 'BitterSweet', ticker: ['BTR'], logoUrl: '/logo/BitterSweet-Logo.webp' },
-    { name: 'Bleeter.biz', ticker: ['BLE'], logoUrl: '/logo/Bleeter_Banner_IV.png.webp' },
-    { name: 'Brute', ticker: ['BRU'], logoUrl: '/logo/Brute-Logo.PNG.webp' },
-    { name: 'Burger Shot', ticker: ['BSHT'], logoUrl: '/logo/Burger-Shot-Logo.webp' },
-    { name: 'Bürgerfahrzeug', ticker: ['BFA'], logoUrl: '/logo/Baw-bürgerfahrzeug.webp' },
-    { name: 'Candybox', ticker: ['CABOX'], logoUrl: '/logo/Candybox-Logo.PNG.webp' },
-    { name: 'Canyon Entertainment', ticker: ['CANE'], logoUrl: '/logo/Canyon-Entertainment-Logo_VCS.PNG.webp' },
-    { name: 'Cluckin Bell', ticker: ['CUBEL'], logoUrl: '/logo/Cluckin-Bell-Logo.PNG.webp' },
-    { name: 'CNT', ticker: ['CNTU', 'CNT'], logoUrl: '/logo/CNT_Gold_White_IV.webp' },
-    { name: 'Crevis', ticker: ['CRE'], logoUrl: '/logo/Crevis-Logo.PNG.webp' },
-    { name: 'Daily Globe', ticker: ['DGP'], logoUrl: '/logo/Daily-Globe-Logo.webp' },
-    { name: 'Eyefind', ticker: ['EYEF', 'EYE'], logoUrl: '/logo/Eyefind-Logo.PNG.webp' },
-    { name: 'eCola', ticker: ['ECLA'], logoUrl: '/logo/ECola-Logo.PNG.webp' },
-    { name: 'Eris', ticker: ['ERIS'], logoUrl: '/logo/Eris_Gelb_Logo.webp' },
-    { name: 'Facade', ticker: ['FAC'], logoUrl: '/logo/Facade_Logo_HQ.webp' },
-    { name: 'Fleeca', ticker: ['FLEE'], logoUrl: '/logo/Lcn-fleeca.webp' },
-    { name: 'Fruit', ticker: ['FRUC', 'FRT'], logoUrl: '/logo/Fruit-Logo_1984_HQ_VCS.webp' },
-    { name: 'Genic', ticker: ['GNIC'], logoUrl: '/logo/Genic-Logo.PNG.webp' },
-    { name: 'Globe Oil', ticker: ['GLBOIL'], logoUrl: '/logo/Globe-Oil-Logo.svg' },
-    { name: 'Gruppe Sechs', ticker: ['GRUP', 'SECHS'], logoUrl: '/logo/Gruppe-Sechs-Logo.PNG.webp' },
-    { name: 'Hawk & Little', ticker: ['HAL'], logoUrl: '/logo/Baw-hawkandlittle.webp' },
-    { name: 'heat', ticker: ['HEAT'], logoUrl: '/logo/Heat-Logo.webp' },
-    { name: 'HVY Industries', ticker: ['HVY'], logoUrl: '/logo/Baw-hvy.webp' },
-    { name: 'Liberty Sports Network', ticker: ['LSNW'], logoUrl: '/logo/Liberty_Sports_Network_Logo.webp' },
-    { name: 'Logger', ticker: ['LOGR'], logoUrl: '/logo/Logger-Beer-Logo_IV.PNG.webp' },
-    { name: 'Lombank', ticker: ['LOMB'], logoUrl: '/logo/LomBank_Logo.webp' },
-    { name: 'Los Santos Customs', ticker: ['LSC'], logoUrl: '/logo/LS_Customs_Logo_V.webp' },
-    { name: 'Los Santos Water & Power', ticker: ['WAP'], logoUrl: '/logo/Los_Santos_Department_of_Water_Power_Logo_V.webp' },
-    { name: 'Los Santos Transit', ticker: ['LST'], logoUrl: '/logo/Los_Santos_Transit_logo.webp' },
-    { name: 'LTD Gasoline', ticker: ['LTD'], logoUrl: '/logo/LTD-Gasoline-Logo.PNG.webp' },
-    { name: 'Maibatsu Corporation', ticker: ['MAI'], logoUrl: '/logo/Maibatsu-Logo.PNG.webp' },
-    { name: 'Max Renda', ticker: ['MAXR'], logoUrl: '/logo/Lcn-maxrenda.webp' },
-    { name: 'Music and Entertainment TV', ticker: ['METV'], logoUrl: '/logo/MeTV-Logo_VCS.PNG.webp' },
-    { name: 'Nx-Jn', ticker: ['NXJN'], logoUrl: '/logo/Nx-Jn-Logo.PNG.webp' },
-    { name: 'Pißwasser', ticker: ['PIS'], logoUrl: '/logo/Pißwasser-Logo.PNG.webp' },
-    { name: 'Ponsonbys', ticker: ['PON'], logoUrl: '/logo/Ponsonbys_Wortmarke.webp' },
-    { name: 'Pump & Run Gymnasium', ticker: ['PMP'], logoUrl: '/logo/Pump_and_Run_Gymnasium_wortmarke.webp' },
-    { name: 'RON', ticker: ['RONO', 'RON'], logoUrl: '/logo/RON-Logo_3.PNG.webp' },
-    { name: 'SchlongbergSachs', ticker: ['SCHL', 'SACHS'], logoUrl: '/logo/SchlongbergSachs-Logo.PNG.webp' },
-    { name: 'Schmidt & Priss', ticker: ['SCHM', 'PRIS'], logoUrl: '/logo/Schmidt-Priss-Logo.PNG.webp' },
-    { name: 'Schyster', ticker: ['SHT'], logoUrl: '/logo/Baw-schyster.webp' },
-    { name: 'Shark', ticker: ['SHRK', 'SHK'], logoUrl: '/logo/SHARK-Logo.PNG.webp' },
-    { name: 'Shrewsbury Shotguns', ticker: ['SHR'], logoUrl: '/logo/Shrewsbury_Shotguns_Wortmarke.webp' },
-    { name: 'Sprunk Incorporated', ticker: ['SPUK', 'SPU'], logoUrl: '/logo/Sprunk-Logo.PNG.webp' },
-    { name: 'SubUrban', ticker: ['SUB'], logoUrl: '/logo/SubUrban-Logo2.webp' }
-  ]
-
-  return sampleNames.map((company, index) => ({
-    ...company,
-    description: `A leading company in the ${index % 5 === 0 ? 'technology' : index % 5 === 1 ? 'finance' : index % 5 === 2 ? 'retail' : index % 5 === 3 ? 'manufacturing' : 'services'} sector.`,
-    price: Math.random() * 500 + 10,
-    change: (Math.random() - 0.5) * 20,
-    changePercent: (Math.random() - 0.5) * 10,
-    volume: Math.floor(Math.random() * 10000000) + 100000
-  }))
 }
 
 const loadMore = () => {
@@ -381,6 +305,7 @@ const handleTrade = (company: Company) => {
 }
 
 onMounted(() => {
+  connect()
   loadCompanies()
 })
 </script>

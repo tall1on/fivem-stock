@@ -82,18 +82,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-
-interface Company {
-  name: string
-  ticker?: string[]
-  logo?: string
-  logoUrl?: string
-  description?: string | null
-  price?: number
-  change?: number
-  changePercent?: number
-  volume?: number
-}
+import { useStockStore, type Company } from '../stores/stockStore'
 
 interface Props {
   company: Company
@@ -104,10 +93,29 @@ const props = withDefaults(defineProps<Props>(), {
   staggerDelay: 0
 })
 
+const store = useStockStore()
+
 defineEmits<{
   details: []
   trade: []
 }>()
+
+const ticker = computed(() => props.company.ticker?.[0] || '')
+
+const currentPrice = computed(() => {
+  return store.prices[ticker.value] ?? props.company.price ?? 0
+})
+
+const priceChange = computed(() => {
+  const oldPrice = store.previousPrices[ticker.value] ?? currentPrice.value
+  return currentPrice.value - oldPrice
+})
+
+const priceChangePercent = computed(() => {
+  const oldPrice = store.previousPrices[ticker.value] ?? currentPrice.value
+  if (oldPrice === 0) return 0
+  return ((currentPrice.value - oldPrice) / oldPrice) * 100
+})
 
 const initials = computed(() => {
   return props.company.name
@@ -118,19 +126,18 @@ const initials = computed(() => {
     .toUpperCase()
 })
 
-const isPositive = computed(() => (props.company.change || 0) >= 0)
+const isPositive = computed(() => priceChange.value >= 0)
 
 const formattedPrice = computed(() => {
-  const price = props.company.price || 0
-  return price.toLocaleString('en-US', {
+  return currentPrice.value.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   })
 })
 
 const formattedChange = computed(() => {
-  const change = props.company.change || 0
-  const changePercent = props.company.changePercent || 0
+  const change = priceChange.value
+  const changePercent = priceChangePercent.value
   const sign = change >= 0 ? '+' : ''
   return `${sign}$${change.toFixed(2)} (${sign}${changePercent.toFixed(2)}%)`
 })

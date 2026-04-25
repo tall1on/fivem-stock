@@ -21,12 +21,12 @@
             <span class="ticker-symbol">{{ company.ticker?.[0] || 'N/A' }}</span>
           </div>
           <div class="ticker-price">
-            <span class="price">{{ formatPrice(company.price) }}</span>
+            <span class="price">{{ formatPrice(getPrice(company)) }}</span>
             <span
               class="change"
               :class="{ positive: isPositive(company), negative: !isPositive(company) }"
             >
-              {{ formatChange(company.change) }}
+              {{ formatChange(getChange(company)) }}
             </span>
           </div>
         </div>
@@ -50,12 +50,12 @@
             <span class="ticker-symbol">{{ company.ticker?.[0] || 'N/A' }}</span>
           </div>
           <div class="ticker-price">
-            <span class="price">{{ formatPrice(company.price) }}</span>
+            <span class="price">{{ formatPrice(getPrice(company)) }}</span>
             <span
               class="change"
               :class="{ positive: isPositive(company), negative: !isPositive(company) }"
             >
-              {{ formatChange(company.change) }}
+              {{ formatChange(getChange(company)) }}
             </span>
           </div>
         </div>
@@ -66,15 +66,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-
-interface Company {
-  name: string
-  ticker?: string[]
-  logo?: string
-  logoUrl?: string
-  price?: number
-  change?: number
-}
+import { useStockStore, type Company } from '../stores/stockStore'
 
 interface Props {
   companies?: Company[]
@@ -86,27 +78,42 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 40
 })
 
+const store = useStockStore()
+
 const displayCompanies = computed(() => {
-  if (!props.companies || props.companies.length === 0) {
-    return []
-  }
-  return props.companies.slice(0, 15)
+  const companies = props.companies && props.companies.length > 0 
+    ? props.companies 
+    : store.companies
+    
+  return companies.slice(0, 15)
 })
 
-const isPositive = (company: Company) => (company.change || 0) >= 0
+const getTicker = (company: Company) => company.ticker?.[0] || ''
 
-const formatPrice = (price?: number) => {
-  const p = price || 0
-  return p.toLocaleString('en-US', {
+const getPrice = (company: Company) => {
+  const ticker = getTicker(company)
+  return store.prices[ticker] ?? company.price ?? 0
+}
+
+const getChange = (company: Company) => {
+  const ticker = getTicker(company)
+  const current = getPrice(company)
+  const previous = store.previousPrices[ticker] ?? current
+  return current - previous
+}
+
+const isPositive = (company: Company) => getChange(company) >= 0
+
+const formatPrice = (price: number) => {
+  return price.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   })
 }
 
-const formatChange = (change?: number) => {
-  const c = change || 0
-  const sign = c >= 0 ? '+' : ''
-  return `${sign}$${c.toFixed(2)}`
+const formatChange = (change: number) => {
+  const sign = change >= 0 ? '+' : ''
+  return `${sign}$${change.toFixed(2)}`
 }
 
 const getInitials = (name: string) => {
