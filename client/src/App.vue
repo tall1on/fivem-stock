@@ -5,7 +5,7 @@
       <div class="header-content">
         <div class="header-brand">
           <div class="header-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2L2 7l10 5 10-5-10-5z"/>
               <path d="M2 17l10 5 10-5"/>
               <path d="M2 12l10 5 10-5"/>
@@ -31,13 +31,13 @@
             <span class="status-text">Market Open</span>
           </div>
           <button class="header-btn">
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <span class="btn-text hidden sm:inline">Live</span>
           </button>
           <button class="header-btn primary">
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
             </svg>
             <span class="btn-text hidden sm:inline">Trade</span>
@@ -65,61 +65,68 @@
               </h2>
               <p class="text-dark-400">
                 {{ filteredCompanies.length > 0
-                  ? `Found ${filteredCompanies.length} company${filteredCompanies.length !== 1 ? 'ies' : ''}`
+                  ? `Found ${filteredCompanies.length} ${filteredCompanies.length !== 1 ? 'companies' : 'company'}`
                   : `${store.companies.length} companies listed on the exchange`
                 }}
               </p>
             </div>
-            <div class="flex flex-wrap gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
+              <!-- All -->
               <button
-                v-for="filter in filters"
-                :key="filter.id"
-                @click="activeFilter = filter.id"
-                class="group relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden"
-                :class="activeFilter === filter.id
-                  ? 'text-dark-50'
-                  : 'bg-dark-800/50 text-dark-400 hover:text-dark-100 border border-dark-700/50'
-                "
+                @click="activeFilter = 'all'"
+                :class="activeFilter === 'all'
+                  ? 'text-white bg-blue-600 border-blue-600'
+                  : 'text-blue-400 bg-white/5 border border-white/10 hover:bg-white/10'"
+                class="h-9 min-w-[90px] flex items-center justify-center gap-1.5 rounded-xl text-sm font-semibold transition-all duration-200 border flex-shrink-0 px-3"
               >
-                <!-- Background Gradient for Active State -->
-                <div
-                  v-if="activeFilter === filter.id"
-                  class="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-500"
-                ></div>
-                
-                <!-- Hover Effect -->
-                <div
-                  class="absolute inset-0 bg-primary-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
-                  v-if="activeFilter !== filter.id"
-                ></div>
-
-                <span class="relative flex items-center gap-2">
-                  <component
-                    :is="filter.id === 'all' ? 'svg' : filter.id === 'gainers' ? 'svg' : 'svg'"
-                    v-if="filter.id === 'all'"
-                    class="w-4 h-4"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  >
-                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-                  </component>
-                  <svg
-                    v-else-if="filter.id === 'gainers'"
-                    class="w-4 h-4 text-green-400"
-                    :class="{ 'text-white': activeFilter === 'gainers' }"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  >
-                    <path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/>
-                  </svg>
-                  <svg
-                    v-else-if="filter.id === 'losers'"
-                    class="w-4 h-4 text-red-400"
-                    :class="{ 'text-white': activeFilter === 'losers' }"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  >
-                    <path d="M23 18l-9.5-9.5-5 5L1 6"/><path d="M17 18h6v-6"/>
-                  </svg>
-                  {{ filter.label }}
-                </span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+                  <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+                <span>All</span>
+              </button>
+              <!-- Gainers -->
+              <button
+                @click="activeFilter = 'gainers'"
+                :class="activeFilter === 'gainers'
+                  ? 'text-white bg-green-600 border-green-600'
+                  : 'text-green-400 bg-white/5 border border-white/10 hover:bg-white/10'"
+                class="h-9 min-w-[90px] flex items-center justify-center gap-1.5 rounded-xl text-sm font-semibold transition-all duration-200 border flex-shrink-0 px-3"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                  <polyline points="16 7 22 7 22 13"/>
+                </svg>
+                <span>Gainers</span>
+              </button>
+              <!-- Losers -->
+              <button
+                @click="activeFilter = 'losers'"
+                :class="activeFilter === 'losers'
+                  ? 'text-white bg-red-600 border-red-600'
+                  : 'text-red-400 bg-white/5 border border-white/10 hover:bg-white/10'"
+                class="h-9 min-w-[90px] flex items-center justify-center gap-1.5 rounded-xl text-sm font-semibold transition-all duration-200 border flex-shrink-0 px-3"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/>
+                  <polyline points="16 17 22 17 22 11"/>
+                </svg>
+                <span>Losers</span>
+              </button>
+              <!-- Tech -->
+              <button
+                @click="activeFilter = 'tech'"
+                :class="activeFilter === 'tech'
+                  ? 'text-white bg-blue-600 border-blue-600'
+                  : 'text-blue-400 bg-white/5 border border-white/10 hover:bg-white/10'"
+                class="h-9 min-w-[90px] flex items-center justify-center gap-1.5 rounded-xl text-sm font-semibold transition-all duration-200 border flex-shrink-0 px-3"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="6" height="6" rx="1"/>
+                  <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>
+                  <rect x="4" y="4" width="16" height="16" rx="2"/>
+                </svg>
+                <span>Tech</span>
               </button>
             </div>
           </div>
@@ -238,6 +245,14 @@ const filteredCompanies = computed(() => {
     result = result.filter(c => (c.change || 0) > 0)
   } else if (activeFilter.value === 'losers') {
     result = result.filter(c => (c.change || 0) < 0)
+  } else if (activeFilter.value === 'tech') {
+    const techKeywords = ['communication', 'internet', 'software', 'tech', 'mobilfunk', 'netz', 'daten', 'elektronik'];
+    const techTickers = ['BADR', 'BDG', 'TNK', 'WHZ', 'EYE', 'FCD', 'FRT', 'IFRT', 'WIZ'];
+    result = result.filter(c => 
+      techTickers.some(t => c.ticker.includes(t)) ||
+      techKeywords.some(k => c.description?.toLowerCase().includes(k)) ||
+      techKeywords.some(k => c.name.toLowerCase().includes(k))
+    )
   }
 
   return result
@@ -309,3 +324,6 @@ onMounted(() => {
   loadCompanies()
 })
 </script>
+
+<style lang="scss" scoped>
+</style>

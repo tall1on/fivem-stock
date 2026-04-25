@@ -10,7 +10,7 @@
 
 .search-input {
   width: 100%;
-  padding: $spacing-sm $spacing-xl;
+  padding: $spacing-sm 3.5rem;
   padding-left: 3rem;
   height: 42px;
   font-size: $font-size-sm;
@@ -44,15 +44,15 @@
   left: $spacing-md;
   top: 50%;
   transform: translateY(-50%);
-  color: $dark-500;
+  color: $dark-400;
   pointer-events: none;
   transition: color $transition-normal;
   display: flex;
   align-items: center;
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   .search-input:focus ~ & {
@@ -107,14 +107,17 @@
   max-height: 400px;
   overflow-y: auto;
   z-index: $z-dropdown;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
   transition: all $transition-normal;
 
-  &.open {
+  &.dropdown-enter-from,
+  &.dropdown-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  &.dropdown-enter-to,
+  &.dropdown-leave-from {
     opacity: 1;
-    visibility: visible;
     transform: translateY(0);
   }
 }

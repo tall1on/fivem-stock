@@ -25,47 +25,54 @@
       <button
         v-if="searchQuery"
         ref="clearButton"
-        class="search-clear"
+        class="search-clear visible"
         @click="clearSearch"
         aria-label="Clear search"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
       </button>
-      <div
-        v-if="isOpen && filteredCompanies.length > 0"
-        ref="dropdown"
-        class="search-dropdown"
-      >
+      <Transition name="dropdown">
         <div
-          v-for="(company, index) in filteredCompanies"
-          :key="company.name"
-          class="search-result-item"
-          :class="{ highlighted: highlightedIndex === index }"
-          @click="selectCompany(company)"
-          @mouseenter="highlightedIndex = index"
+          v-if="isOpen && filteredCompanies.length > 0"
+          ref="dropdown"
+          class="search-dropdown open"
         >
-          <div class="search-result-logo">
-            <img
-              v-if="company.logoUrl"
-              :src="company.logoUrl"
-              :alt="company.name"
-              @error="handleImageError"
-            />
-            <span v-else class="logo-text">{{ getInitials(company.name) }}</span>
-          </div>
-          <div class="search-result-info">
-            <div class="search-result-name">{{ company.name }}</div>
-            <div class="search-result-ticker">{{ company.ticker?.join(' / ') || 'N/A' }}</div>
+          <div
+            v-for="(company, index) in filteredCompanies"
+            :key="company.name"
+            class="search-result-item"
+            :class="{ highlighted: highlightedIndex === index }"
+            @click="selectCompany(company)"
+            @mouseenter="highlightedIndex = index"
+          >
+            <div class="search-result-logo">
+              <img
+                v-if="company.logoUrl"
+                :src="company.logoUrl"
+                :alt="company.name"
+                @error="handleImageError"
+              />
+              <span v-else class="logo-text">{{ getInitials(company.name) }}</span>
+            </div>
+            <div class="search-result-info">
+              <div class="search-result-name">{{ company.name }}</div>
+              <div class="search-result-ticker">{{ company.ticker?.join(' / ') || 'N/A' }}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div v-else-if="isOpen && searchQuery && filteredCompanies.length === 0" class="search-dropdown">
-        <div class="search-no-results">
-          No companies found matching "{{ searchQuery }}"
+      </Transition>
+      <Transition name="dropdown">
+        <div 
+          v-if="isOpen && searchQuery && filteredCompanies.length === 0" 
+          class="search-dropdown open"
+        >
+          <div class="search-no-results">
+            No companies found matching "{{ searchQuery }}"
+          </div>
         </div>
-      </div>
+      </Transition>
     </div>
   </div>
 </template>
